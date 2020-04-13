@@ -51,18 +51,6 @@ def main():
             update_id+=1
 
  
- 
-
-
-
-
-
-
-
-
-
-
-
 
 #call the function to make it reply
 #main()

@@ -128,6 +128,8 @@ def Vocabulary(update,context):
     x=Vocab(chat_message).mean()
     context.bot.send_message(chat_id=update.effective_chat.id,text=x)
     
+
+
 def main():
     updater=Updater(token=token,use_context=True)
     dp=updater.dispatcher
