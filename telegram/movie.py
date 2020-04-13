@@ -12,6 +12,6 @@ class imdbMovie():
         _last=f"https://www.imdb.com/{items}?ref_=fn_al_tt_1"
         return _last
 
-        
+    
         
 

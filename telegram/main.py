@@ -136,6 +136,7 @@ def main():
     dp.add_handler(CommandHandler("currency",currency_exchange))
     dp.add_handler(CommandHandler("movie",imdbMovies))
     dp.add_handler(CommandHandler("word",Vocabulary))
+    #hello
     updater.start_polling()
     updater.idle()
    
