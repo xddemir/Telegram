@@ -5,6 +5,7 @@ import telegram
 from bs4 import BeautifulSoup
 from movie import imdbMovie
 from vocabulary import Vocab
+from weather import weathers
 ######################################33
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -124,11 +125,24 @@ def imdbMovies(update,context):
     context.bot.send_message(chat_id=update.effective_chat.id,text=x)
 
 def Vocabulary(update,context):
-    chat_message=update.message.text
-    x=Vocab(chat_message).mean()
-    context.bot.send_message(chat_id=update.effective_chat.id,text=x)
-    
+    try:
+        chat_message=update.message.text
+        x=Vocab(chat_message).mean()
+        context.bot.send_message(chat_id=update.effective_chat.id,text=x)
+    except KeyError:
+        context.bot.send_message(chat_id=update.effective_chat.id,text="İnvaild Syntax :(")
 
+def weather(update,context):
+    try:
+        chat_message=update.message.text
+        _lst=chat_message.split(" ")
+        _lst.remove("/weather")
+        _=weathers("".join(_lst)).get_location()
+        context.bot.send_message(chat_id=update.effective_chat.id,text=_)
+    except KeyError:
+        context.bot.send_message(chat_id=update.effective_chat.id,text="İnvaild Syntax :(")
+        
+        
 
 def main():
     updater=Updater(token=token,use_context=True)
@@ -138,6 +152,8 @@ def main():
     dp.add_handler(CommandHandler("currency",currency_exchange))
     dp.add_handler(CommandHandler("movie",imdbMovies))
     dp.add_handler(CommandHandler("word",Vocabulary))
+    dp.add_handler(CommandHandler("weather",weather))
+    
     #hello
     updater.start_polling()
     updater.idle()
