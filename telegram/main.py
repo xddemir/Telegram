@@ -1,13 +1,11 @@
-import logging
+import logging,info
 import telegram
-from telegram.ext import Updater
-from telegram.ext import CommandHandler
+from telegram.ext import Updater,CommandHandler
 from telegram import ChatMember
 from functs import functs
-import info
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
-
 def main():
     updater=Updater(token=info.token,use_context=True)
     dp=updater.dispatcher
@@ -17,6 +15,8 @@ def main():
     dp.add_handler(CommandHandler("movie",functs(updater,dp).imdbMovies))
     dp.add_handler(CommandHandler("word",functs(updater,dp).Vocabulary))
     dp.add_handler(CommandHandler("weather",functs(updater,dp).weather))
+    dp.add_handler(CommandHandler("horos",functs(updater,dp).horoscope))
+    dp.add_handler(CommandHandler("meme",functs(updater,dp).sendMessag))
     
     updater.start_polling()
     updater.idle()

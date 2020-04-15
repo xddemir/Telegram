@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from movie import imdbMovie
 from vocabulary import Vocab
 from weather import weathers
+from horoscope import horoscope
 ######################################33
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -84,5 +85,18 @@ class functs:
             context.bot.send_message(chat_id=update.effective_chat.id,text=_)
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id,text="İnvaild Syntax :(")
+
+    def horoscope(self,update,context):
+        try:
+            chat_message=update.message.text
+            _lst=chat_message.split(" ")
+            _lst.remove("/horos")
+            _=horoscope("".join(_lst)).get_daily()
+            context.bot.send_message(chat_id=update.effective_chat.id,text=_)
+        except KeyError:
+            context.bot.send_message(chat_id=update.effective_chat.id,text="Arıes,Taurus,Gemını,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricorn,aquarius,pısces")
+    def sendMessag(self,update,context):
+        url='https://img-9gag-fun.9cache.com/photo/aKd0E9N_460s.jpg'
+        context.bot.send_photo(chat_id=update.effective_chat.id,photo=url)
             
             
