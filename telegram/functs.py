@@ -7,6 +7,8 @@ from movie import imdbMovie
 from vocabulary import Vocab
 from weather import weathers
 from horoscope import horoscope
+from reddit_meme import reddit
+from pandemic_new import hot_corona
 ######################################33
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
@@ -96,7 +98,21 @@ class functs:
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id,text="Arıes,Taurus,Gemını,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricorn,aquarius,pısces")
     def sendMessag(self,update,context):
-        url='https://img-9gag-fun.9cache.com/photo/aKd0E9N_460s.jpg'
-        context.bot.send_photo(chat_id=update.effective_chat.id,photo=url)
+        _=reddit(info.password,info.username).get_meme()
+        context.bot.send_photo(chat_id=update.effective_chat.id,photo=_)
+
+    def sendGif(self,update,context):
+        _=reddit(info.password,info.username).get_gif()
+        context.bot.send_video(chat_id=update.effective_chat.id,video=_)
+
+    def sendPandemic(self,update,context):
+        chat_message=update.message.text
+        _lst=chat_message.split(" ")
+        if len(_lst)<1:
+            _=hot_corona().get_country_case("World")
+        else:       
+            _lst.remove("/pandemic")
+            _=hot_corona().get_country_case("".join(_lst))
+        context.bot.send_message(chat_id=update.effective_chat.id,text=_)
             
             

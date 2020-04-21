@@ -17,7 +17,8 @@ def main():
     dp.add_handler(CommandHandler("weather",functs(updater,dp).weather))
     dp.add_handler(CommandHandler("horos",functs(updater,dp).horoscope))
     dp.add_handler(CommandHandler("meme",functs(updater,dp).sendMessag))
-    
+    dp.add_handler(CommandHandler("gif",functs(updater,dp).sendGif))
+    dp.add_handler(CommandHandler("pandemic",functs(updater,dp).sendPandemic))
     updater.start_polling()
     updater.idle()
 
