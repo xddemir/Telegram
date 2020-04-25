@@ -21,6 +21,7 @@ from selenium.webdriver.common.keys import Keys
 
 class functs:
     def __init__(self,updater,dp):
+        self.counter=0
         self.url=info.url
         self.token=info.token
         self.updater=updater
@@ -114,5 +115,18 @@ class functs:
             _lst.remove("/pandemic")
             _=hot_corona().get_country_case("".join(_lst))
         context.bot.send_message(chat_id=update.effective_chat.id,text=_)
+    
+    def kick_member(self,update,context):
+        user=update._effective_user
+        user_id=user["id"]
+        try:
+            context.bot.send_message(chat_id=update.effective_chat.id,text=user["first_name"]+" "+user["last_name"]+" "+"Forbidden Word")
+            context.bot.send_photo(chat_id=update.effective_chat.id,photo=info.coffin1)
+            #self.bot.kick_chat_member(update.effective_chat.id,user_id)
+        except:
+            context.bot.send_message(chat_id=update.effective_chat.id,text=user["first_name"]+" "+"Forbidden Word")
+            context.bot.send_photo(chat_id=update.effective_chat.id,photo=info.coffin1)
+
+        
             
             

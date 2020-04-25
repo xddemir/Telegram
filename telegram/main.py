@@ -1,11 +1,12 @@
 import logging,info
 import telegram
-from telegram.ext import Updater,CommandHandler
+from telegram.ext import Updater,CommandHandler,MessageHandler,Filters
 from telegram import ChatMember
 from functs import functs
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
+forbidden_words={"sex","start","taksim"}
 def main():
     updater=Updater(token=info.token,use_context=True)
     dp=updater.dispatcher
@@ -19,6 +20,9 @@ def main():
     dp.add_handler(CommandHandler("meme",functs(updater,dp).sendMessag))
     dp.add_handler(CommandHandler("gif",functs(updater,dp).sendGif))
     dp.add_handler(CommandHandler("pandemic",functs(updater,dp).sendPandemic))
+    dp.add_handler(MessageHandler(Filters.text(forbidden_words),functs(updater,dp).kick_member))
+    
+
     updater.start_polling()
     updater.idle()
 
