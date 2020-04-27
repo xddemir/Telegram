@@ -13,14 +13,19 @@ from pandemic_new import hot_corona
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram import ChatMember
+from telegram import Message
+from telegram import Chat
+from telegram import User
 import info
 ################################################
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 
+
 class functs:
     def __init__(self,updater,dp):
+        self.forbidden_words={"sex","darina","haksim"}
         self.counter=0
         self.url=info.url
         self.token=info.token
@@ -59,11 +64,6 @@ class functs:
             time.sleep(1)
             context.bot.send_message(chat_id=update.effective_chat.id,text=elem)
 
-    def start(self,update,context): 
-        chat_user=20200410232728
-        _user=telegram.ChatMember(chat_user,"online")
-        print(update._effective_user)
-        
     def imdbMovies(self,update,context):
         chat_message=update.message.text
         _list=chat_message.split(" ")
@@ -117,16 +117,37 @@ class functs:
         context.bot.send_message(chat_id=update.effective_chat.id,text=_)
     
     def kick_member(self,update,context):
-        user=update._effective_user
-        user_id=user["id"]
+        message=update.message
+        reply=message.reply_to_message
+        reply_id=reply.from_user.id
+        reply_name=reply.from_user.name
         try:
-            context.bot.send_message(chat_id=update.effective_chat.id,text=user["first_name"]+" "+user["last_name"]+" "+"Forbidden Word")
+            context.bot.send_message(chat_id=update.effective_chat.id,text=reply_name+","+"KICK!")
             context.bot.send_photo(chat_id=update.effective_chat.id,photo=info.coffin1)
-            #self.bot.kick_chat_member(update.effective_chat.id,user_id)
+            self.bot.kick_chat_member(update.effective_chat.id,reply_id)
         except:
-            context.bot.send_message(chat_id=update.effective_chat.id,text=user["first_name"]+" "+"Forbidden Word")
+            context.bot.send_message(chat_id=update.effective_chat.id,text=reply_name+","+"KICK!")
             context.bot.send_photo(chat_id=update.effective_chat.id,photo=info.coffin1)
+    
+    def welcome_member(self,update,context):
+        message=update.message
+        user=message.new_chat_members[0]
+        user_name=user.username
+        name=message.new_chat_members[0].name
+        try:
+            context.bot.send_message(chat_id=update.effective_chat.id,text=info.welcome.format(user_name))
+        except:
+            context.bot.send_message(chat_id=update.effective_chat.id,text=info.welcome.format(name))
 
-        
-            
+    def remove_forbidden_words(self,update,context):
+        _msg=update.message
+        txt=_msg.text
+        for i in self.forbidden_words:
+            if i in txt:
+                self.bot.delete_message(update._effective_chat.id,update._effective_message.message_id)
+                context.bot.send_message(chat_id=update.effective_chat.id,text="Don't be rude")
+    
+    def help(self,update,context):
+        context.bot.send_message(chat_id=update.effective_chat.id,text=info.welcome)
+
             
