@@ -22,8 +22,8 @@ def main():
     dp.add_handler(MessageHandler(Filters.text,functs(updater,dp).remove_forbidden_words))
     dp.add_handler(CommandHandler("kick",functs(updater,dp).kick_member))
     dp.add_handler(MessageHandler(Filters.status_update.new_chat_members,functs(updater,dp).welcome_member))
-    dp.add_handler(CommandHandler("help",functs(updater,dp).help))
-    
+    dp.add_handler(CommandHandler("help",functs(updater,dp).help_bot))
+    dp.add_handler(CommandHandler("pgraph",functs(updater,dp).graph_pandemic))
     updater.start_polling()
     updater.idle()
 

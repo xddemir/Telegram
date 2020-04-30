@@ -2,6 +2,7 @@ import requests
 import logging
 import telegram
 import time
+import os
 from bs4 import BeautifulSoup
 from movie import imdbMovie
 from vocabulary import Vocab
@@ -147,7 +148,37 @@ class functs:
                 self.bot.delete_message(update._effective_chat.id,update._effective_message.message_id)
                 context.bot.send_message(chat_id=update.effective_chat.id,text="Don't be rude")
     
-    def help(self,update,context):
-        context.bot.send_message(chat_id=update.effective_chat.id,text=info.welcome)
+    def help_bot(self,update,context):
+        print("help")
+        context.bot.send_message(chat_id=update.effective_chat.id,text=info._help)
+
+    def graph_pandemic(self,update,context):
+        print("start")
+        chat_message=update.message
+        txt=chat_message.txt
+        a=txt.split(" ")
+        a.remove("/pgraph")
+        hot_corona().plot("".join(a))
+        #local=os.path.dirname(os.path.abspath("corona.png"))
+        context.bot.send_document(update.effective_chat.id,document=open('corona.jpg','rb'))
+        print("Completed")
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             

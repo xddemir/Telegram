@@ -16,7 +16,7 @@ class reddit():
         for submisson in subreddit:
             if str(submisson.url).endswith(".jpg"):
                 meme_lst.append(submisson.url)
-        _=random.randint(1,10)
+        _=random.randint(0,9)
         return meme_lst[_]
 
     def get_gif(self):

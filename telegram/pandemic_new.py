@@ -4,13 +4,14 @@ from pandas.io.html import read_html
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-
+import os
 
 class hot_corona():
     def __init__(self):
         self.url='https://www.worldometers.info/coronavirus/'
 
     def get_country_case(self, _country_name): 
+        print("Working")
         _pandemic=dict()
         response=requests.get(self.url).content
         hot_table=read_html(response, attrs={"id":"main_table_countries_today"})
@@ -108,13 +109,11 @@ class hot_corona():
             plt.text(0.863, 0.57, "Total Deaths:\n{:,}".format(int(T_Deaths[0])), fontdict=font2, transform=ax.transAxes)
             plt.text(0.863, 0.47, "Total Tests:\n{:,}".format(int(T_Tests[0])), fontdict=font3, transform=ax.transAxes)
             plt.text(0.863, 0.37, "Total Recovered:\n{:,}".format(int(T_Recovered[0])), fontdict=font4, transform=ax.transAxes)
+        plt.savefig('telegram/corona.png')
+        local=os.path.dirname(os.path.abspath("corona.png"))
+        #print(local)
 
-        plt.savefig('corona.png')
-        plt.show()
-
-
-if __name__ == "__main__":
-    country = input("Enter country or leave blank for World: ")
-    test = hot_corona()
-    test.plot(country)
+"""country = input("Enter country or leave blank for World: ")
+test = hot_corona()
+test.plot(country)"""
 
