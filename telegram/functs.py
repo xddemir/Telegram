@@ -42,9 +42,7 @@ class functs:
         response=result['rates']
         key=update.message.text # /currency TRY,USD,10
         cur_list=key.lstrip("/currency ")
-        print(cur_list)
         cur_list=cur_list.split(",")
-        print(cur_list)
         _result=float(cur_list[2])*(float(response[cur_list[0]])/(float(response[cur_list[1]])))
         time.sleep(2)
         context.bot.send_message(chat_id=update.effective_chat.id,text=f'''
@@ -53,7 +51,7 @@ class functs:
         **************
         ''')    
 
-    def youtubeSearchSelenium(self,update,context):
+    def youtube(self,update,context):
             _url="https://www.youtube.com/"
             _msg=update.message.text
             msg_lst=_msg.split(" ")
@@ -65,14 +63,14 @@ class functs:
             time.sleep(1)
             context.bot.send_message(chat_id=update.effective_chat.id,text=elem)
 
-    def imdbMovies(self,update,context):
+    def movie(self,update,context):
         chat_message=update.message.text
         _list=chat_message.split(" ")
         _list.remove("/movie")
         x=imdbMovie("".join(_list)).get_movie()
         context.bot.send_message(chat_id=update.effective_chat.id,text=x)
 
-    def Vocabulary(self,update,context):
+    def word(self,update,context):
         try:
             chat_message=update.message.text
             x=Vocab(chat_message).mean()
@@ -90,7 +88,7 @@ class functs:
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id,text="İnvaild Syntax :(")
 
-    def horoscope(self,update,context):
+    def horos(self,update,context):
         try:
             chat_message=update.message.text
             _lst=chat_message.split(" ")
@@ -99,15 +97,15 @@ class functs:
             context.bot.send_message(chat_id=update.effective_chat.id,text=_)
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id,text="Arıes,Taurus,Gemını,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricorn,aquarius,pısces")
-    def sendMessag(self,update,context):
+    def meme(self,update,context):
         _=reddit(info.password,info.username).get_meme()
         context.bot.send_photo(chat_id=update.effective_chat.id,photo=_)
 
-    def sendGif(self,update,context):
+    def gif(self,update,context):
         _=reddit(info.password,info.username).get_gif()
         context.bot.send_video(chat_id=update.effective_chat.id,video=_)
 
-    def sendPandemic(self,update,context):
+    def pandemic(self,update,context):
         chat_message=update.message.text
         _lst=chat_message.split(" ")
         if len(_lst)<1:
@@ -116,8 +114,19 @@ class functs:
             _lst.remove("/pandemic")
             _=hot_corona().get_country_case("".join(_lst))
         context.bot.send_message(chat_id=update.effective_chat.id,text=_)
+
+    def corona(self,update,context):
+        chat_message=update.message
+        _txt=chat_message.text
+        a=_txt.split(" ")
+        a.remove("/corona")
+        hot_corona().plot("".join(a))
+        #local=os.path.dirname(os.path.abspath("corona.png"))
+        with open(info.local_url,"rb") as f:
+           
+            context.bot.send_photo(update.effective_chat.id,photo=f)
     
-    def kick_member(self,update,context):
+    def kick(self,update,context):
         message=update.message
         reply=message.reply_to_message
         reply_id=reply.from_user.id
@@ -129,7 +138,14 @@ class functs:
         except:
             context.bot.send_message(chat_id=update.effective_chat.id,text=reply_name+","+"KICK!")
             context.bot.send_photo(chat_id=update.effective_chat.id,photo=info.coffin1)
-    
+  
+class group(functs):
+    def __init__(self,updater,dp):
+        super().__init__(updater,dp)
+
+    def help(self,update,context):
+        context.bot.send_message(chat_id=update.effective_chat.id,text=info._help)
+
     def welcome_member(self,update,context):
         message=update.message
         user=message.new_chat_members[0]
@@ -139,7 +155,6 @@ class functs:
             context.bot.send_message(chat_id=update.effective_chat.id,text=info.welcome.format(user_name))
         except:
             context.bot.send_message(chat_id=update.effective_chat.id,text=info.welcome.format(name))
-
     def remove_forbidden_words(self,update,context):
         _msg=update.message
         txt=_msg.text
@@ -147,23 +162,7 @@ class functs:
             if i in txt:
                 self.bot.delete_message(update._effective_chat.id,update._effective_message.message_id)
                 context.bot.send_message(chat_id=update.effective_chat.id,text="Don't be rude")
-    
-    def help_bot(self,update,context):
-        print("help")
-        context.bot.send_message(chat_id=update.effective_chat.id,text=info._help)
-
-    def graph_pandemic(self,update,context):
-        print("start")
-        chat_message=update.message
-        txt=chat_message.txt
-        a=txt.split(" ")
-        a.remove("/pgraph")
-        hot_corona().plot("".join(a))
-        #local=os.path.dirname(os.path.abspath("corona.png"))
-        context.bot.send_document(update.effective_chat.id,document=open('corona.jpg','rb'))
-        print("Completed")
-
-        
+            
 
 
 

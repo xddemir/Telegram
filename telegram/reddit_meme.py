@@ -19,7 +19,7 @@ class reddit():
         _=random.randint(0,9)
         return meme_lst[_]
 
-    def get_gif(self):
+    def get_gif(self): # it will improve more......
         a=[]
         self.reddit.read_only=True
         subgif=self.reddit.subreddit('gif').hot(limit=100)

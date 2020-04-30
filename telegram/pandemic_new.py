@@ -11,7 +11,6 @@ class hot_corona():
         self.url='https://www.worldometers.info/coronavirus/'
 
     def get_country_case(self, _country_name): 
-        print("Working")
         _pandemic=dict()
         response=requests.get(self.url).content
         hot_table=read_html(response, attrs={"id":"main_table_countries_today"})
@@ -47,8 +46,8 @@ class hot_corona():
         df.drop(df.columns[6], axis=1, inplace=True)
 
         if len(context) > 3:
-            context = context.lower().capitalize()
-            df = df.loc[df["Country,Other"] == context]
+            context = context.lower().capitalize() # it made Upper first letter
+            df = df.loc[df["Country,Other"] == context]                        # loc, 
         if 4 > len(context) > 1:
             context = context.upper()
             df = df.loc[df["Country,Other"] == context]
@@ -109,8 +108,9 @@ class hot_corona():
             plt.text(0.863, 0.57, "Total Deaths:\n{:,}".format(int(T_Deaths[0])), fontdict=font2, transform=ax.transAxes)
             plt.text(0.863, 0.47, "Total Tests:\n{:,}".format(int(T_Tests[0])), fontdict=font3, transform=ax.transAxes)
             plt.text(0.863, 0.37, "Total Recovered:\n{:,}".format(int(T_Recovered[0])), fontdict=font4, transform=ax.transAxes)
-        plt.savefig('telegram/corona.png')
-        local=os.path.dirname(os.path.abspath("corona.png"))
+        plt.savefig('corona.png')
+        plt.close(fig)
+
         #print(local)
 
 """country = input("Enter country or leave blank for World: ")
