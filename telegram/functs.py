@@ -3,6 +3,7 @@ import logging
 import telegram
 import time
 import os
+import info
 from bs4 import BeautifulSoup
 from movie import imdbMovie
 from vocabulary import Vocab
@@ -17,7 +18,6 @@ from telegram import ChatMember
 from telegram import Message
 from telegram import Chat
 from telegram import User
-import info
 ################################################
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -138,7 +138,10 @@ class functs:
         except:
             context.bot.send_message(chat_id=update.effective_chat.id,text=reply_name+","+"KICK!")
             context.bot.send_photo(chat_id=update.effective_chat.id,photo=info.coffin1)
-  
+            
+    def github(self,update,context):
+        context.bot.send_message(chat_id=update.effective_chat.id,text=info._github)
+        
 class group(functs):
     def __init__(self,updater,dp):
         super().__init__(updater,dp)
