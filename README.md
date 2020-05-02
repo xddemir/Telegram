@@ -16,8 +16,23 @@ thanks to [Gerile3](https://t.me/gerile3) for contributions
 
 -to use in your telegram group or others
 
+# GUIDE
+Firstly,In fact penguin bot only consist two block the one is main.py block and the other is function.py,so the others are only API Class except main.py and function.py.Penguin bot pulls chat update through dispatcher and handler if you check on the main block as you can see you realized that the main block only works with add handler.
 
-**The Guide is going to add as soon as**
+# A few Functions
+
+ **/Pandemic Situation:**
+  ![pandemic](https://github.com/deusexmachina99/telegram/tree/master/imagesPandemic.gif)
+ 
+**/Corona Situation:**
+
+  ![corona](https://github.com/deusexmachina99/telegram/tree/master/images/Corona.gif)
+ 
+ **/Horos Situation:**
+ 
+  ![corona](https://github.com/deusexmachina99/telegram/tree/master/images/horos.gif)
+
+ 
 
 
 
