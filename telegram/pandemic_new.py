@@ -15,21 +15,22 @@ class hot_corona():
         response=requests.get(self.url).content
         hot_table=read_html(response, attrs={"id":"main_table_countries_today"})
         hot_table[0].drop(["ActiveCases",'Serious,Critical','Serious,Critical','Deaths/1M pop','TotalTests','Tests/ 1M pop'],axis=1,inplace=True)
-
-        country_names=list(hot_table[0]["Country,Other"].head(n=20).iteritems())
-        Total_Cases=list(hot_table[0]["TotalCases"].head(n=20).iteritems())
-        New_Cases=list(hot_table[0]["NewCases"].head(n=20).iteritems())
-        Total_Deaths=list(hot_table[0]["TotalDeaths"].head(n=20).iteritems())
-        New_Deaths=list(hot_table[0]["NewDeaths"].head(n=20).iteritems())
-        Total_Recovered=list(hot_table[0]["TotalRecovered"].head(n=20).iteritems())
+        hot_table=hot_table[0].fillna(0)
+    
+        country_names=list(hot_table["Country,Other"].head(n=20).iteritems())
+        Total_Cases=list(hot_table["TotalCases"].head(n=20).iteritems())
+        New_Cases=list(hot_table["NewCases"].head(n=20).iteritems())
+        Total_Deaths=list(hot_table["TotalDeaths"].head(n=20).iteritems())
+        New_Deaths=list(hot_table["NewDeaths"].head(n=20).iteritems())
+        Total_Recovered=list(hot_table["TotalRecovered"].head(n=20).iteritems())
 
         for i in range(0, 20):
             _pandemic[country_names[i][1]]="Total_Cases: {}\nNew_Cases: {}\nTotal_Deaths: {}\nNew_Deaths: {}\nTotal_Recovered: {}".format(
             Total_Cases[i][1],
             New_Cases[i][1],
-            Total_Deaths[i][1],
+            round(Total_Deaths[i][1]),
             New_Deaths[i][1],
-            Total_Recovered[i][1]
+            round(Total_Recovered[i][1])
             )
         return _pandemic[_country_name]
     
@@ -113,7 +114,7 @@ class hot_corona():
 
         #print(local)
 
-"""country = input("Enter country or leave blank for World: ")
-test = hot_corona()
-test.plot(country)"""
+#country = input("Enter country or leave blank for World: ")
+#test = hot_corona()
+#test.get_country_case("Turkey")
 
