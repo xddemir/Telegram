@@ -22,15 +22,16 @@ Firstly,In fact penguin bot only consist two block the one is main.py block and 
 # A few Functions
 
  **/Pandemic Situation:**
-  ![pandemic](https://github.com/deusexmachina99/telegram/tree/master/imagesPandemic.gif)
+ 
+ <img src="images/Pandemic.gif" width="400">
  
 **/Corona Situation:**
 
-  ![corona](https://github.com/deusexmachina99/telegram/tree/master/images/Corona.gif)
+<img src="images/Corona.gif" width="400">
  
- **/Horos Situation:**
+**/Horos Situation:**
  
-  ![corona](https://github.com/deusexmachina99/telegram/tree/master/images/horos.gif)
+<img src="images/horos.gif" width="400">
 
  
 
