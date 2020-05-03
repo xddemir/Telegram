@@ -2,7 +2,6 @@ import requests
 import logging
 import telegram
 import time
-import os
 import info
 from bs4 import BeautifulSoup
 from movie import imdbMovie
