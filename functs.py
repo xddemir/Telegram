@@ -140,13 +140,13 @@ class functs:
             
     def github(self,update,context):
         context.bot.send_message(chat_id=update.effective_chat.id,text=info._github)
+
+    def help(self,update,context):
+        context.bot.send_message(chat_id=update.effective_chat.id,text=info._help)
         
 class group(functs):
     def __init__(self,updater,dp):
         super().__init__(updater,dp)
-
-    def help(self,update,context):
-        context.bot.send_message(chat_id=update.effective_chat.id,text=info._help)
 
     def welcome_member(self,update,context):
         message=update.message
