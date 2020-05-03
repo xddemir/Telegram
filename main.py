@@ -18,7 +18,6 @@ def main():
     for i in range(len(func_lst)):
         dp.add_handler(CommandHandler(func_names[i],func_lst[i]))
 
-    help("modules")
     """dp.add_handler(CommandHandler("help",functs(updater,dp).help_bot))
     dp.add_handler(CommandHandler("corona",functs(updater,dp).graph_pandemic))
     dp.add_handler(CommandHandler("youtube",functs(updater,dp).youtubeSearchSelenium))
