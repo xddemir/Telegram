@@ -1,0 +1,1 @@
+workey: python main.py
