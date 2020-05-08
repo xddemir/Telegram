@@ -1,16 +1,46 @@
+from requests.auth import HTTPBasicAuth
 import requests
+import info
 from bs4 import BeautifulSoup
 from pandas.io.html import read_html
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-
+import cloudinary.uploader
+import cloudinary
+import cloudinary.api
+import time
+import locale
 class hot_corona():
     def __init__(self):
         self.url='https://www.worldometers.info/coronavirus/'
+        self.cloud_json=f"https://{info.cloud[1]}:{info.cloud[2]}@api.cloudinary.com/v1_1/{info.cloud[1]}/resources/image"
+        
+    def upload_cloud(self):
+        a="https://164433293667139:hbJHuUYO_U4SB4COw77Xi5-I718@api.cloudinary.com/v1_1/dc8142kzq/resources/image"
+        #cloudinary.utils.api_sign_request(
+         #   dict(public_id="corona",version='1312461204'),info.cloud[2]) // WİTHOUT API
+        cloudinary.config(cloud_name=info.cloud[0],api_key=info.cloud[1],api_secret=info.cloud[2])
+        cloudinary.uploader.upload("corona.png",public_id="corona1")
+        response=requests.get(a)
+        if response.status_code==401:
+            response=requests.get(a,auth=HTTPBasicAuth('user', 'pass'))
+        _response=response.json()
+        return _response["resources"][0]['secure_url']
+        #result=cloudinary.uploader.explicit(public_id="corona.png",type=)
+        #json=requests.get(self.cloud_json,)
+        #print(json)
+       # _url=cloudinary.CloudinaryImage("corona1.png").image()
 
     def get_country_case(self, _country_name): 
+        """
+        it only return top 20 COVID-19 countries 
+        /pandemic Turkey
+        /pandemic USA
+        """
+        #common=lambda value:locale.format("%.2f",value,grouping=True)
+
         _pandemic=dict()
         response=requests.get(self.url).content
         hot_table=read_html(response, attrs={"id":"main_table_countries_today"})
@@ -24,6 +54,7 @@ class hot_corona():
         New_Deaths=list(hot_table["NewDeaths"].head(n=20).iteritems())
         Total_Recovered=list(hot_table["TotalRecovered"].head(n=20).iteritems())
 
+
         for i in range(0, 20):
             _pandemic[country_names[i][1]]="Total_Cases: {}\nNew_Cases: {}\nTotal_Deaths: {}\nNew_Deaths: {}\nTotal_Recovered: {}".format(
             Total_Cases[i][1],
@@ -32,6 +63,7 @@ class hot_corona():
             New_Deaths[i][1],
             round(Total_Recovered[i][1])
             )
+        
         return _pandemic[_country_name]
     
     def plot(self, context=None):
@@ -112,9 +144,6 @@ class hot_corona():
         plt.savefig('corona.png')
         plt.close(fig)
 
-        #print(local)
 
-#country = input("Enter country or leave blank for World: ")
-#test = hot_corona()
-#test.get_country_case("Turkey")
-
+test=hot_corona()
+test.upload_cloud()

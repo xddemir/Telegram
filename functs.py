@@ -25,7 +25,7 @@ from selenium.webdriver.common.keys import Keys
 
 class functs:
     def __init__(self,updater,dp):
-        self.forbidden_words={"sex","darina","haksim"}
+        self.forbidden_words={"sex","haksim"}
         self.counter=0
         self.url=info.url
         self.token=info.token
@@ -35,20 +35,17 @@ class functs:
         logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                      level=logging.INFO)
       
-    def currency_exchange(self,update,context):
+    def currency(self,update,context):
         result=requests.get('https://api.exchangeratesapi.io/latest?base=USD')
         result=result.json()
         response=result['rates']
         key=update.message.text # /currency TRY,USD,10
         cur_list=key.lstrip("/currency ")
-        cur_list=cur_list.split(",")
+        cur_list=cur_list.split(" ")
         _result=float(cur_list[2])*(float(response[cur_list[0]])/(float(response[cur_list[1]])))
         time.sleep(2)
-        context.bot.send_message(chat_id=update.effective_chat.id,text=f'''
-        **************
-        {_result}
-        **************
-        ''')    
+        _result=round(_result,2)
+        context.bot.send_message(chat_id=update.effective_chat.id,text=str(_result)+" "+cur_list[0]+" 💰")
 
     def youtube(self,update,context):
             _url="https://www.youtube.com/"
@@ -64,14 +61,16 @@ class functs:
 
     def movie(self,update,context):
         chat_message=update.message.text
-        _list=chat_message.split(" ")
+        _list=chat_message.split("")
         _list.remove("/movie")
-        x=imdbMovie("".join(_list)).get_movie()
+        listo=[i.lower().capitalize() for i in _list]
+        x=imdbMovie("".join(listo)).get_movie()
         context.bot.send_message(chat_id=update.effective_chat.id,text=x)
 
     def word(self,update,context):
         try:
             chat_message=update.message.text
+            chat_message.lower().capitalize()
             x=Vocab(chat_message).mean()
             context.bot.send_message(chat_id=update.effective_chat.id,text=x)
         except KeyError:
@@ -80,9 +79,10 @@ class functs:
     def weather(self,update,context):
         try:
             chat_message=update.message.text
-            _lst=chat_message.split(" ")
+            _lst=chat_message.split("")
             _lst.remove("/weather")
-            _=weathers("".join(_lst)).get_location()
+            listo=[i.lower().capitalize() for i in _lst]
+            _=weathers(" ".join(listo)).get_location()
             context.bot.send_message(chat_id=update.effective_chat.id,text=_)
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id,text="İnvaild Syntax :(")
@@ -92,7 +92,8 @@ class functs:
             chat_message=update.message.text
             _lst=chat_message.split(" ")
             _lst.remove("/horos")
-            _=horoscope("".join(_lst)).get_daily()
+            listo=[i.lower().capitalize() for i in _lst]
+            _=horoscope(" ".join(listo)).get_daily()
             context.bot.send_message(chat_id=update.effective_chat.id,text=_)
         except KeyError:
             context.bot.send_message(chat_id=update.effective_chat.id,text="Arıes,Taurus,Gemını,Cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricorn,aquarius,pısces")
@@ -107,11 +108,18 @@ class functs:
     def pandemic(self,update,context):
         chat_message=update.message.text
         _lst=chat_message.split(" ")
+        _lst.remove("/pandemic")
+
+        listo=[i.lower().capitalize() for i in _lst]
+        _content="".join(listo)
+
+        if 4 > len(_content) > 1:
+            _context = _content.upper()
         if len(_lst)<1:
             _=hot_corona().get_country_case("World")
         else:       
-            _lst.remove("/pandemic")
-            _=hot_corona().get_country_case("".join(_lst))
+            _=hot_corona().get_country_case(_context)
+
         context.bot.send_message(chat_id=update.effective_chat.id,text=_)
 
     def corona(self,update,context):
@@ -120,11 +128,12 @@ class functs:
         a=_txt.split(" ")
         a.remove("/corona")
         hot_corona().plot("".join(a))
-        #local=os.path.dirname(os.path.abspath("corona.png"))
-        with open(info.local_url,"rb") as f:
-           
-            context.bot.send_photo(update.effective_chat.id,photo=f)
-    
+        _photo=hot_corona().upload_cloud()
+        time.sleep(5)
+        context.bot.send_photo(
+            chat_id=update.effective_chat.id,
+            photo=_photo)
+            
     def kick(self,update,context):
         message=update.message
         reply=message.reply_to_message
