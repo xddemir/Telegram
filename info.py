@@ -21,29 +21,28 @@ Welcome to the GROUP @{} ,you're part of our group now so you can do whatever yo
 
 These are Our BOT COMMANDS:
 
-1-) /youtube = you can pull the video to the your chat such as /youtube before you go
-2-) /currency = you can calculate currency for example /currency TRY USD 10
-3-) /movie = you can recall your favorite film or series /movie matrix
-4-) /word = if you wanna learn a word meaning you can write /word Fish
-5-) /weather = you can learn your city weather situation
-6-) /horos = if you wonder the horos you can learn many information about horos /horos fish
-7-) /meme = it sends random meme
-8-) /gif = it sends random gif
-9-) /pandemic= it gives a lot of information pandemic if you want your country case /pandemic turkey, but if you write nothing it sends top list 
-10-) /corona = it gives pandemic situation over the chart: /corona Turkey Or /corona None=Top 10 Global
+
+1-) /currency = you can calculate currency for example /currency TRY USD 10
+2-) /movie = you can recall your favorite film or series /movie matrix
+3-) /word = if you wanna learn a word meaning you can write /word Fish
+4-) /weather = you can learn your city weather situation
+5-) /horos = if you wonder the horos you can learn many information about horos /horos fish
+6-) /meme = it sends random meme
+7-) /gif = it sends random gif
+8-) /pandemic= it gives a lot of information pandemic if you want your country case /pandemic turkey, but if you write nothing it sends top list 
+9-) /corona = it gives pandemic situation over the chart: /corona Turkey Or /corona None=Top 10 Global
 """
 _help="""
 These are MY COMMANDS 🤞
-1-) /youtube = you can pull the video to the your chat such as /youtube before you go
-2-) /currency = you can calculate currency for example: /currency TRY USD 10
-3-) /movie = you can recall your favorite film or series: /movie matrix
-4-) /word = if you wanna learn a word meaning you can write: /word Fish
-5-) /weather = you can learn your city weather situation
-6-) /horos = if you wonder the horos you can learn many information about horos: /horos fish
-7-) /meme = it sends random meme
-8-) /gif = it sends random gif
-9-) /corona = it gives pandemic situation over the chart: /corona Turkey Or /corona None=Top 10 Global
-10-) /pandemic= it gives a lot of information pandemic if you want your country case /pandemic turkey, but if you write nothing it sends top list 
+1-) /currency = you can calculate currency for example: /currency TRY USD 10
+2-) /movie = you can recall your favorite film or series: /movie matrix
+3-) /word = if you wanna learn a word meaning you can write: /word Fish
+4-) /weather = you can learn your city weather situation
+5-) /horos = if you wonder the horos you can learn many information about horos: /horos fish
+6-) /meme = it sends random meme
+7-) /gif = it sends random gif
+8-) /corona = it gives pandemic situation over the chart: /corona Turkey Or /corona None=Top 10 Global
+9-) /pandemic= it gives a lot of information pandemic if you want your country case /pandemic turkey, but if you write nothing it sends top list 
 """
 
 
