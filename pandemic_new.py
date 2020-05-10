@@ -18,7 +18,7 @@ class hot_corona():
         self.cloud_json=f"https://{info.cloud[1]}:{info.cloud[2]}@api.cloudinary.com/v1_1/{info.cloud[1]}/resources/image"
         
     def upload_cloud(self):
-        a="https://164433293667139:hbJHuUYO_U4SB4COw77Xi5-I718@api.cloudinary.com/v1_1/dc8142kzq/resources/image"
+        a=info.api_url
         #cloudinary.utils.api_sign_request(
          #   dict(public_id="corona",version='1312461204'),info.cloud[2]) // WİTHOUT API
         cloudinary.config(cloud_name=info.cloud[0],api_key=info.cloud[1],api_secret=info.cloud[2])
