@@ -9,8 +9,9 @@ thanks to [Gerile3](https://t.me/gerile3) for contributions
 
 **If you have a trouble,You can contact me through the following platforms**
 
--Telegram: [Telegram](https://t.me/penguinz00)
--E-Mail: slayerdogukan@hotmail.com
+Telegram: [Telegram](https://t.me/penguinz00)
+
+E-Mail: slayerdogukan@hotmail.com
 
 ## You Can
 -to create new functions.
