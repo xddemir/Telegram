@@ -25,15 +25,11 @@ Firstly,In fact penguin bot only consist two block the one is main.py block and 
 
  **/Pandemic Situation:**
  
- <img src="images/Pandemic.gif" width="350">
- 
-**/Corona Situation:**
+ <img src="images/Pandemic.gif" width="300">  <img src="images/Corona.gif" width="300"> <img src="images/horos.gif" width="300">  
 
-<img src="images/Corona.gif" width="350">
+
+
  
-**/Horos Situation:**
- 
-<img src="images/horos.gif" width="350">
 
  
 
