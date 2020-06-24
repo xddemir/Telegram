@@ -23,7 +23,7 @@ Firstly,In fact penguin bot only consist two block the one is main.py block and 
 
 # A few Functions
 
- **/Pandemic Situation:**
+ **Pandemic, Corona, Horos**                    
  
  <img src="images/Pandemic.gif" width="300">  <img src="images/Corona.gif" width="300"> <img src="images/horos.gif" width="300">  
 
