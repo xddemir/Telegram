@@ -2,9 +2,9 @@
 
 # telegram/penguin00
 ### the bot has a lot of functions such as (corona pandemic situation,weather,horos,vocabulary...)
-It was a fun work during quarantine lockdown And My First BOT.And It teached me how works Telegram API and uses.
-it is able to be used as Group Bot Or Solo
-And it'smade using Python 3.7.4
+It was a fun work during quarantine lockdown and my first BOT. It taught me how works Telegram API and uses.
+Also, it's able to be use as Group Bot
+And It was made by using (Python 3.7.4)
 thanks to [Gerile3](https://t.me/gerile3) for contributions 
 
 **If you have a trouble,You can contact me through the following platforms**
@@ -26,13 +26,4 @@ Firstly,In fact penguin bot only consist two block the one is main.py block and 
  **Pandemic, Corona, Horos**                    
  
  <img src="images/Pandemic.gif" width="300">  <img src="images/Corona.gif" width="300"> <img src="images/horos.gif" width="300">  
-
-
-
- 
-
- 
-
-
-
 
