@@ -12,6 +12,10 @@ import cloudinary
 import cloudinary.api
 import time
 import locale
+import re
+from urllib.request import Request, urlopen
+
+
 class hot_corona():
     def __init__(self):
         self.url='https://www.worldometers.info/coronavirus/'
@@ -71,12 +75,12 @@ class hot_corona():
             if name is not given then it plots the top10
             example usage: /corona Turkey , /corona """
 
-        response = requests.get(self.url).content
-        table = pd.read_html(response, attrs={"id": "main_table_countries_today"})
-        df = table[0].fillna(0)
-        # df.drop(df.index[0], inplace=True)  # World
+        req = Request('https://www.worldometers.info/coronavirus/', headers={'User-Agent': 'Firefox/76.0.1'})
+        webpage = re.sub(r'<.*?>', lambda g: g.group(0).upper(), urlopen(req).read().decode('utf-8'))
+        tables = pd.read_html(webpage)
+        df = tables[0].fillna(0)
+        df.drop(df.index[0:7], inplace=True)
         df.drop(["ActiveCases", 'Serious,Critical', 'Serious,Critical', 'Deaths/1M pop', 'Tests/ 1M pop'], axis=1, inplace=True)
-        df.drop(df.columns[6], axis=1, inplace=True)
 
         if len(context) > 3:
             context = context.lower().capitalize() # it made Upper first letter
