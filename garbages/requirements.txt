@@ -1,6 +1,6 @@
 aiodns==2.0.0
 aiogram==2.6.1
-aiohttp==3.6.2
+aiohttp==3.7.4
 alabaster==0.7.12
 appdirs==1.4.3
 asgiref==3.2.5
