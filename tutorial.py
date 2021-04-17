@@ -2,7 +2,7 @@ import requests as requests
 import random
 
 
-url="https://api.telegram.org/bot1085712406:AAHQfcaghrszrSAXCUtS7HGv3xYROyAPBBw/"
+url="https://api.telegram.org/bot1085712406:api_key/"
 
 # create func that get chat id
 def get_chat_id(update):
@@ -49,20 +49,4 @@ def main():
             else:
                 send_message(get_chat_id(update),"Sorry Not understand what you inputtend :(")               
             update_id+=1
-
- 
-
-#call the function to make it reply
-#main()
-
-
-
-
-
-
-
-
-
-
-
 
