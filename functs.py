@@ -174,21 +174,3 @@ class group(functs):
                 self.bot.delete_message(update._effective_chat.id,update._effective_message.message_id)
                 context.bot.send_message(chat_id=update.effective_chat.id,text="Don't be rude")
             
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            
