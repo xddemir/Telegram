@@ -5,8 +5,8 @@ class reddit():
     def __init__(self,password,username):
         self.username=username
         self.password=password
-        self.reddit = praw.Reddit(client_id='aEavAj_rNG96zw',
-                            client_secret='z353-0G4Z2p6z_vZD9JnKTFc3JQ',
+        self.reddit = praw.Reddit(client_id='',
+                            client_secret='',
                             password=self.password,
                             username=self.username,user_agent='penguinz01')
     def get_meme(self):
